@@ -65,12 +65,10 @@ function calculateAverageAge(arr) {
 }
 
 const averageAge = calculateAverageAge(objectArray);
-console.log(averageAge);
-
+console.log(`Average age: ${averageAge}`);
 
 
 // Part 5: Full Circle
-
 
 function generateCSV(objArray) {
   let CSVstring = '';
@@ -81,15 +79,15 @@ function generateCSV(objArray) {
     keys.push(key);
   }
 
-  // console.log(keys);
-
   for (i = 1; i < objArray.length; i++) {
-    console.log(objArray[i])
-    // iterating over each object
-    // we need the value of each key in the object
+    console.log(objArray[i]);
+    // Notes:
+    // - we are iterating over each object starting at index 1 (index 0 is the headers)
+    // - we need the value of each key in the object
+    // - then add that value to the CSVstring
+    // - CSVstring still needs formatting (',' and '\n')
   }
 
-  // console.log(CSVstring);
 }
 
 generateCSV(objectArray);
