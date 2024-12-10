@@ -1,7 +1,8 @@
-// let mainString = `Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232`;
 let mainString = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26`;
 
+
 // Part 2 - Expanding Fucntionality:
+console.log("- Part 2 - Generate 2D Array:")
 
 function generate2DArray(str) {
   let arr2D = [];
@@ -13,11 +14,12 @@ function generate2DArray(str) {
 
   return arr2D;
 }
-
 const Array2D = generate2DArray(mainString);
+console.log(Array2D);
 
 
 // Part 3 - Transforming Data:
+console.log("- Part 3 - Generate Object Array:")
 
 function generateObjectArray(arr2D) {
   let objectArray = [];
@@ -35,26 +37,31 @@ function generateObjectArray(arr2D) {
 
   return objectArray;
 }
-
 const objectArray = generateObjectArray(Array2D);
-
-// Part 4 - Sorting & Manipulating Data:
-
-// Remove the last element from the sorted array.
-objectArray.pop();
 console.log(objectArray);
 
 
+// Part 4 - Sorting & Manipulating Data:
+console.log("- Part 4 - Sorting & Manipulating Data:")
+
+// Remove the last element from the sorted array.
+console.log("Remove last element from array:")
+objectArray.pop();
+console.log(objectArray);
+
 // Insert the following object at index 1:
 // { id: "48", name: "Barry", occupation: "Runner", age: "25" }
-objectArray.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" } )
+console.log("Insert new object at index 1:")
+objectArray.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" });
 console.log(objectArray);
 
 // Add the following object to the end of the array:
 // { id: "7", name: "Bilbo", occupation: "None", age: "111" }
-objectArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" })
+console.log("Add object to end of the array:")
+objectArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
 console.log(objectArray);
 
+// Calculate average age
 function calculateAverageAge(arr) {
   let totalAge = 0
 
@@ -68,28 +75,22 @@ const averageAge = calculateAverageAge(objectArray);
 console.log(`Average age: ${averageAge}`);
 
 
-// Part 5: Full Circle
+// Part 5 - Full Circle:
+console.log("- Part 5 - Generate CSV String:");
 
-function generateCSV(objArray) {
-  let CSVstring = '';
-  let keys = [];
+function generateCSVString(objArray) {
+  let csvString = '';
 
-  for (let key in objArray[0]) {
-    CSVstring += `${key},`
-    keys.push(key);
+  // Extract obj keys and concat them to csvString
+  const keyArray = Object.keys(objArray[0]);
+  csvString += keyArray.join(",") + "\n";
+
+  // Extract values from each obj and concat them to csvString
+  for (i = 0; i < objArray.length; i++) {
+    const strArray =  Object.values(objArray[i]);
+    csvString += strArray.join(",") + "\n";
   }
 
-  for (i = 1; i < objArray.length; i++) {
-    console.log(objArray[i]);
-    // Notes:
-    // - we are iterating over each object starting at index 1 (index 0 is the headers)
-    // - we need the value of each key in the object
-    // - then add that value to the CSVstring
-    // - CSVstring still needs formatting (',' and '\n')
-  }
-
+  return csvString;
 }
-
-generateCSV(objectArray);
-
-
+console.log(generateCSVString(objectArray));
